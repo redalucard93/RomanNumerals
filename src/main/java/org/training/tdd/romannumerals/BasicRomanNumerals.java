@@ -2,7 +2,7 @@ package org.training.tdd.romannumerals;
 
 import java.util.TreeMap;
 
-class BasicRomanNumerals extends TreeMap<Integer, String> {
+final class BasicRomanNumerals extends TreeMap<Integer, String> {
 
     BasicRomanNumerals() {
 

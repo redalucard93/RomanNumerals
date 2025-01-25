@@ -2,7 +2,7 @@ package org.training.tdd.romannumerals;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class RomanNumeral {
+public final class RomanNumeral {
 
     static final String INVALID_REPETITION_CASES = "IIII|VVVV|XXXX|LLLL|CCCC|DDDD|MMMM";
 
@@ -19,7 +19,7 @@ public class RomanNumeral {
         for(int j = 0; j < numberOfRepetition; j++) {
             repeatedRomanNumeralBuilder.append(stringRepresentation);
         }
-        return new RomanNumeral(repeatedRomanNumeralBuilder.toString());
+        return romanNumeral(repeatedRomanNumeralBuilder.toString());
     }
 
     public boolean isValid() {

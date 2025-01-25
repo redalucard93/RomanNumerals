@@ -2,9 +2,9 @@ package org.training.tdd.romannumerals;
 
 import java.util.TreeMap;
 
-public class RomanNumeralSubtractions extends TreeMap<Integer, String> {
+public final class RomanNumeralSubtractions extends TreeMap<Integer, String> {
 
-    public RomanNumeralSubtractions() {
+    RomanNumeralSubtractions() {
 
         this.put(4,"IV");
         this.put(9, "IX");
@@ -14,7 +14,7 @@ public class RomanNumeralSubtractions extends TreeMap<Integer, String> {
         this.put(900, "CM");
     }
 
-    public boolean isAResultOfSubtraction(int number) {
+    boolean isAResultOfSubtraction(int number) {
         return this.containsKey(number);
     }
 

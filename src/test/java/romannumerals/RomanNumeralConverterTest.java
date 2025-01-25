@@ -5,11 +5,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.training.tdd.romannumerals.RomanNumeral;
-import org.training.tdd.romannumerals.RomanNumeralConverter;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.training.tdd.romannumerals.RomanNumeral.romanNumeral;
+import static org.training.tdd.romannumerals.RomanNumeralConverter.romanNumeralConverter;
 
 class RomanNumeralConverterTest {
 
@@ -36,7 +36,7 @@ class RomanNumeralConverterTest {
 //    })
     @CsvFileSource(resources = "/roman_numerals_test_data.csv", numLinesToSkip = 1)
     void shouldConvertIntToRomanNumeral(String number, String expectedRomanNumeral) {
-        RomanNumeral actualRomanNumeral = new RomanNumeralConverter(Integer.parseInt(number.trim())).toRomanNumeral();
+        RomanNumeral actualRomanNumeral = romanNumeralConverter(Integer.parseInt(number.trim())).toRomanNumeral();
         assertThat(actualRomanNumeral.toString()).isEqualTo(expectedRomanNumeral);
 
     }
@@ -45,7 +45,7 @@ class RomanNumeralConverterTest {
     @Test
     void shouldNotConvertIntToRomanNumeral() {
         IllegalArgumentException thrown = assertThrows(
-                IllegalArgumentException.class, () -> new RomanNumeralConverter(0));
+                IllegalArgumentException.class, () -> romanNumeralConverter(0));
         assertThat(thrown.getMessage()).isEqualTo("Cannot convert 0 to a roman numeral");
 
     }

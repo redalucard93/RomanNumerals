@@ -13,7 +13,7 @@ public final class RomanNumeralConverter {
 
     private final int number;
 
-    public RomanNumeralConverter(int number) {
+    RomanNumeralConverter(int number) {
 
         this.basicRomanNumerals = new BasicRomanNumerals();
         this.subtractionCases = new RomanNumeralSubtractions();
@@ -40,6 +40,7 @@ public final class RomanNumeralConverter {
 
     }
 
+
     private RomanNumeral addOrSubtract() {
 
         RomanNumeral additionResult = doAnAddition();
@@ -56,7 +57,7 @@ public final class RomanNumeralConverter {
         int lowerNumber;
         lowerNumber = (Integer) ((TreeMap) subtractionCases).lowerKey(number);
 
-        subtractionResult = subtractionCases.get(lowerNumber) + new RomanNumeralConverter(number - lowerNumber).toRomanNumeral();
+        subtractionResult = subtractionCases.get(lowerNumber) + romanNumeralConverter(number - lowerNumber).toRomanNumeral();
 
         return romanNumeral(subtractionResult);
     }
@@ -66,7 +67,7 @@ public final class RomanNumeralConverter {
 
         int lowerNumber = basicRomanNumerals.getBasicLowerNumberOf(number);
         String left = basicRomanNumerals.get(lowerNumber);
-        String right = new RomanNumeralConverter(number - lowerNumber).toRomanNumeral().toString();
+        String right = romanNumeralConverter(number - lowerNumber).toRomanNumeral().toString();
 
         return romanNumeral(left + right);
     }
@@ -87,7 +88,7 @@ public final class RomanNumeralConverter {
         int numberToRepeat = basicRomanNumerals.entrySet().stream().filter(e -> e.getValue().equals(romanNumeralToBeRepeated)).mapToInt(Map.Entry::getKey).findFirst().getAsInt();
         int numberOfRepeat = number / numberToRepeat;
 
-        return romanNumeral(new RomanNumeralConverter(numberToRepeat).toRomanNumeral().toString()).repeat(numberOfRepeat);
+        return romanNumeral(romanNumeralConverter(numberToRepeat).toRomanNumeral().toString()).repeat(numberOfRepeat);
     }
 
 
@@ -108,6 +109,10 @@ public final class RomanNumeralConverter {
     private boolean isMultipleOf(int multiplier) {
 
         return number % multiplier == 0;
+    }
+
+    public static RomanNumeralConverter romanNumeralConverter(int number) {
+        return new RomanNumeralConverter(number);
     }
 
 
